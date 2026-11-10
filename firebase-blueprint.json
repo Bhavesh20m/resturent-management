@@ -1,0 +1,238 @@
+{
+  "entities": {
+    "Restaurant": {
+      "title": "Restaurant",
+      "description": "Restaurant profile and configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "cuisine": { "type": "string" },
+        "currency": { "type": "string" },
+        "timezone": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "taxRate": { "type": "number" },
+        "serviceChargeRate": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "slug"]
+    },
+    "Table": {
+      "title": "Table",
+      "description": "Dining tables in restaurant",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "restaurantId": { "type": "string" },
+        "tableNumber": { "type": "number" },
+        "capacity": { "type": "number" },
+        "section": { "type": "string" },
+        "floor": { "type": "string" },
+        "status": { "type": "string" },
+        "currentOrderId": { "type": "string" },
+        "assignedWaiterId": { "type": "string" },
+        "assignedWaiterName": { "type": "string" },
+        "guestCount": { "type": "number" },
+        "activeSessionToken": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["restaurantId", "tableNumber", "status"]
+    },
+    "MenuCategory": {
+      "title": "MenuCategory",
+      "description": "Menu category definition",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "restaurantId": { "type": "string" },
+        "name": { "type": "string" },
+        "icon": { "type": "string" },
+        "displayOrder": { "type": "number" }
+      },
+      "required": ["restaurantId", "name"]
+    },
+    "MenuProduct": {
+      "title": "MenuProduct",
+      "description": "Published menu items available for order",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "restaurantId": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "image": { "type": "string" },
+        "isVeg": { "type": "boolean" },
+        "spiceLevel": { "type": "string" },
+        "preparationTime": { "type": "number" },
+        "isAvailable": { "type": "boolean" },
+        "isPublished": { "type": "boolean" },
+        "allergens": { "type": "string" },
+        "kitchenStation": { "type": "string" }
+      },
+      "required": ["restaurantId", "categoryId", "name", "price"]
+    },
+    "InventoryItem": {
+      "title": "InventoryItem",
+      "description": "Raw ingredients and stock items",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "restaurantId": { "type": "string" },
+        "name": { "type": "string" },
+        "sku": { "type": "string" },
+        "category": { "type": "string" },
+        "unit": { "type": "string" },
+        "currentStock": { "type": "number" },
+        "minStock": { "type": "number" },
+        "reorderQty": { "type": "number" },
+        "costPerUnit": { "type": "number" },
+        "supplier": { "type": "string" },
+        "storageLocation": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["restaurantId", "name", "unit", "currentStock", "minStock"]
+    },
+    "Recipe": {
+      "title": "Recipe",
+      "description": "Recipe linking menu product to inventory ingredient requirements",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "restaurantId": { "type": "string" },
+        "menuProductId": { "type": "string" },
+        "menuProductName": { "type": "string" },
+        "ingredients": { "type": "string" }
+      },
+      "required": ["restaurantId", "menuProductId"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer and waiter restaurant orders",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "restaurantId": { "type": "string" },
+        "orderNumber": { "type": "string" },
+        "tableId": { "type": "string" },
+        "tableNumber": { "type": "number" },
+        "type": { "type": "string" },
+        "status": { "type": "string" },
+        "items": { "type": "string" },
+        "subtotal": { "type": "number" },
+        "tax": { "type": "number" },
+        "serviceCharge": { "type": "number" },
+        "total": { "type": "number" },
+        "paymentStatus": { "type": "string" },
+        "assignedWaiter": { "type": "string" },
+        "inventoryDeducted": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["restaurantId", "tableNumber", "status", "total"]
+    },
+    "ServiceRequest": {
+      "title": "ServiceRequest",
+      "description": "Table call waiter and assistance requests",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "restaurantId": { "type": "string" },
+        "tableId": { "type": "string" },
+        "tableNumber": { "type": "number" },
+        "type": { "type": "string" },
+        "status": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "resolvedAt": { "type": "string" }
+      },
+      "required": ["restaurantId", "tableNumber", "type", "status"]
+    },
+    "StockAlert": {
+      "title": "StockAlert",
+      "description": "Automated inventory stock alerts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "restaurantId": { "type": "string" },
+        "inventoryItemId": { "type": "string" },
+        "itemName": { "type": "string" },
+        "currentStock": { "type": "number" },
+        "minStock": { "type": "number" },
+        "unit": { "type": "string" },
+        "status": { "type": "string" },
+        "type": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["restaurantId", "itemName", "status"]
+    },
+    "Bill": {
+      "title": "Bill",
+      "description": "Dining table invoice and billing statement",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "restaurantId": { "type": "string" },
+        "tableId": { "type": "string" },
+        "tableNumber": { "type": "number" },
+        "orderIds": { "type": "string" },
+        "subtotal": { "type": "number" },
+        "discount": { "type": "number" },
+        "tax": { "type": "number" },
+        "serviceCharge": { "type": "number" },
+        "tip": { "type": "number" },
+        "grandTotal": { "type": "number" },
+        "paidAmount": { "type": "number" },
+        "status": { "type": "string" },
+        "paymentMethod": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["restaurantId", "tableNumber", "grandTotal", "status"]
+    }
+  },
+  "firestore": {
+    "/restaurants/{restaurantId}": {
+      "schema": "Restaurant",
+      "description": "Restaurant details"
+    },
+    "/tables/{tableId}": {
+      "schema": "Table",
+      "description": "Restaurant tables and live status"
+    },
+    "/menuCategories/{categoryId}": {
+      "schema": "MenuCategory",
+      "description": "Menu categories"
+    },
+    "/menuProducts/{productId}": {
+      "schema": "MenuProduct",
+      "description": "Menu food dishes"
+    },
+    "/inventoryItems/{itemId}": {
+      "schema": "InventoryItem",
+      "description": "Raw stock ingredients"
+    },
+    "/recipes/{recipeId}": {
+      "schema": "Recipe",
+      "description": "Product recipes and ingredient proportions"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Orders across QR, waiter, and kitchen"
+    },
+    "/serviceRequests/{requestId}": {
+      "schema": "ServiceRequest",
+      "description": "Live service assistance requests"
+    },
+    "/stockAlerts/{alertId}": {
+      "schema": "StockAlert",
+      "description": "Low stock and replenish alerts"
+    },
+    "/bills/{billId}": {
+      "schema": "Bill",
+      "description": "Table bills and payment records"
+    }
+  }
+}

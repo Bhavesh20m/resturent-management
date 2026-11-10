@@ -1,0 +1,1225 @@
+# BUILD DINEFLOW — COMPLETE RESTAURANT MANAGEMENT SYSTEM
+
+You are a senior full-stack software architect, restaurant POS developer, Firebase engineer, database architect and professional SaaS UI/UX designer.
+
+Build a complete, functional, real-time restaurant management web application called DineFlow.
+
+IMPORTANT: Start from scratch. This is a new project, not an existing project repair.
+
+I do not want just a landing page, dashboard design, prototype, wireframe or static UI.
+
+I want an actual working application with connected customer ordering, owner management, waiter operations, kitchen operations, inventory management, billing and reports.
+
+The system must be easy to demonstrate to restaurant owners using one public website URL, QR codes and NFC tags.
+
+The entire application must use one common database, with separate interfaces for different roles.
+
+==================================================
+1. TECHNOLOGY AND ARCHITECTURE
+==================================================
+
+Use the following architecture:
+
+Frontend:
+- React.
+- TypeScript.
+- Tailwind CSS.
+- Lucide React icons.
+- Responsive web application.
+
+Backend:
+- Node.js server runtime.
+- TypeScript.
+- Secure server-side API endpoints.
+- Business logic on the server.
+
+Database:
+- Firebase Authentication.
+- Cloud Firestore.
+- Firebase Admin SDK on the backend.
+- Firebase Storage for images.
+
+Use Google AI Studio Build Mode's Firebase integration.
+
+IMPORTANT:
+When Firebase integration is offered, enable Firebase Authentication and Cloud Firestore.
+
+Use Firestore as the persistent shared database.
+
+Do not use localStorage as the primary database.
+
+localStorage may only store harmless UI preferences.
+
+Implement:
+- Proper loading states.
+- Error handling.
+- Form validation.
+- Reusable components.
+- Secure database operations.
+- Real-time updates.
+- Role-based access.
+- Responsive layouts.
+
+Use Asia/Kolkata timezone and INR currency by default.
+
+Create a demo restaurant named:
+
+DineFlow Demo Restaurant
+
+Restaurant type: Premium Indian Multi-Cuisine Restaurant.
+
+==================================================
+2. FOUR SEPARATE APPLICATION EXPERIENCES
+==================================================
+
+Create four separate experiences:
+
+A. OWNER / MANAGER PORTAL
+B. WAITER PORTAL
+C. KITCHEN PORTAL
+D. CUSTOMER QR WEBSITE
+
+All four experiences must connect to the same restaurant database.
+
+Do not mix their navigation menus or permissions.
+
+Required routes:
+
+/owner
+/owner/dashboard
+/owner/floor
+/owner/orders
+/owner/menu
+/owner/inventory
+/owner/reports
+/owner/staff
+/owner/settings
+
+/waiter
+/waiter/tables
+/waiter/orders
+/waiter/requests
+/waiter/ready-orders
+/waiter/billing
+
+/kitchen
+/kitchen/orders
+/kitchen/stations
+/kitchen/inventory
+/kitchen/alerts
+/kitchen/voice
+
+/customer/:restaurantSlug/table/:tableId
+
+/customer/order/:orderId
+/customer/bill/:tableId
+/customer/payment/:billId
+
+Use route guards and role-based authorization.
+
+OWNER:
+Full access to restaurant operations.
+
+MANAGER:
+Access to operational features and authorized reports.
+
+WAITER:
+Only waiter-related features.
+
+KITCHEN STAFF:
+Only kitchen orders, kitchen inventory visibility, preparation stations and voice announcements.
+
+INVENTORY MANAGER:
+Inventory, recipes, suppliers, stock movements and purchases.
+
+CUSTOMER:
+Only customer menu, ordering, service requests and payments.
+
+==================================================
+3. OWNER DASHBOARD
+==================================================
+
+Create a professional restaurant management dashboard.
+
+Show live data:
+
+- Today's sales.
+- Total revenue.
+- Number of orders.
+- Average order value.
+- Active tables.
+- Available tables.
+- Occupied tables.
+- Pending kitchen orders.
+- Ready orders.
+- Low-stock ingredients.
+- Out-of-stock ingredients.
+- Daily expenses.
+- Estimated profit.
+
+Add:
+- Sales charts.
+- Recent orders.
+- Top-selling dishes.
+- Payment breakdown.
+- Table occupancy.
+- Inventory alerts.
+- Staff activity.
+
+Provide filters:
+Today, Yesterday, Last 7 Days, Last 30 Days and Custom Date.
+
+Do not use invented analytics. Calculate dashboard values from actual database records.
+
+==================================================
+4. CUSTOMER QR ORDERING WEBSITE
+==================================================
+
+Every restaurant table needs an individual QR code.
+
+Example:
+Table 1 has a unique customer URL.
+Table 2 has a unique customer URL.
+Table 3 has a unique customer URL.
+
+When a customer scans the QR code:
+
+1. Open the restaurant's mobile website.
+2. Identify the restaurant.
+3. Identify the table.
+4. Show the restaurant logo and branding.
+5. Show the published food menu.
+6. Allow food customization.
+7. Add items to cart.
+8. Submit the order.
+9. Track order status.
+10. Call waiter at any time.
+11. Request water or other assistance.
+12. Request a bill.
+13. Pay the bill.
+
+Customer interface must be fully mobile responsive.
+
+Use a session-safe table identification system. Customers must not be able to access another table's private orders or bills just by changing a URL.
+
+==================================================
+5. COMPLETE DIGITAL MENU
+==================================================
+
+Create a menu management module.
+
+Every menu product supports:
+
+- Product name.
+- Food image.
+- Description.
+- Category.
+- Price.
+- Product variants.
+- Sizes.
+- Spice level.
+- Vegetarian/non-vegetarian information.
+- Ingredients.
+- Allergen information.
+- Add-ons.
+- Extra toppings.
+- Special instructions.
+- Preparation time.
+- Discount.
+- Availability.
+
+Categories:
+
+- Starters.
+- Indian Main Course.
+- Chinese.
+- Pizza.
+- Burgers.
+- Beverages.
+- Desserts.
+- Combos.
+
+Owner must be able to:
+
+- Add menu products.
+- Edit products.
+- Delete products.
+- Upload photos.
+- Create categories.
+- Add variants.
+- Configure prices.
+- Publish products.
+- Unpublish products.
+- Enable or disable product availability.
+
+CRITICAL VISIBILITY RULE:
+
+Inventory items and menu products must be two different entities.
+
+Raw ingredients like paneer, butter, rice, flour, cooking oil and tomatoes must never appear in the customer menu.
+
+Only explicitly published menu products must appear on customer devices.
+
+==================================================
+6. COMPLETE POS AND ORDER MANAGEMENT
+==================================================
+
+Support:
+
+- QR orders.
+- Waiter orders.
+- Walk-in orders.
+- Dine-in orders.
+- Takeaway orders.
+- Delivery orders.
+
+Create a POS interface.
+
+Every order includes:
+
+- Unique order ID.
+- Table number.
+- Order items.
+- Quantities.
+- Variants.
+- Add-ons.
+- Notes.
+- Allergies.
+- Order source.
+- Assigned waiter.
+- Kitchen station.
+- Order timestamp.
+- Order status.
+- Payment status.
+
+Order workflow:
+
+NEW → CONFIRMED → SENT TO KITCHEN → PREPARING → READY → SERVED → COMPLETED.
+
+Allow authorized staff to edit or cancel orders.
+
+Keep an audit history of important changes.
+
+Prevent duplicate order submissions.
+
+==================================================
+7. COMPLETE WAITER PORTAL
+==================================================
+
+Create a separate waiter portal.
+
+Route: /waiter
+
+Sidebar:
+
+- Dashboard.
+- My Tables.
+- Live Orders.
+- Service Requests.
+- Ready to Serve.
+- Billing & Payments.
+
+Show:
+
+- Assigned tables.
+- New QR orders.
+- Active orders.
+- Ready food.
+- Pending bills.
+- Service requests.
+- Unpaid bills.
+
+Waiter actions:
+
+- Accept orders.
+- Create manual orders.
+- Add food items.
+- Send orders to the kitchen.
+- Mark food served.
+- Request bill.
+- View bills.
+- Split bills.
+- Add tips.
+- Accept cash payments.
+- Record authorized payment methods.
+- Print receipts.
+
+--------------------------------------------------
+CALL WAITER — IMPORTANT
+--------------------------------------------------
+
+A customer must be able to call a waiter at ANY TIME.
+
+Do not restrict this feature to the payment page.
+
+Create a permanently accessible Call Waiter button on the customer interface.
+
+Support these separate request types:
+
+1. Call Waiter.
+2. Request Water.
+3. Request Cutlery.
+4. Need Assistance.
+5. Request Bill.
+6. Other.
+
+When a customer clicks a request:
+
+- Save it in Firestore.
+- Include table ID.
+- Include restaurant ID.
+- Include request type.
+- Include timestamp.
+- Display it in the waiter portal immediately.
+- Highlight the table.
+- Notify the waiter.
+- Allow waiter to accept it.
+- Allow waiter to mark it resolved.
+
+Show the service request status to the customer.
+
+Request Bill must be a separate action from Call Waiter.
+
+Do not allow duplicate active requests from accidental repeated clicks.
+
+==================================================
+8. INTERACTIVE RESTAURANT FLOOR MAP
+==================================================
+
+Create an interactive restaurant floor map for owners and waiters.
+
+Display tables with clear status:
+
+- Available.
+- Occupied.
+- New Order.
+- Preparing.
+- Food Ready.
+- Waiter Needed.
+- Bill Requested.
+- Payment Pending.
+- Paid.
+
+Clicking a table opens its details.
+
+Show:
+
+- Table number.
+- Assigned waiter.
+- Guest count.
+- Current order.
+- Order total.
+- Service requests.
+- Payment status.
+- Time occupied.
+
+Allow authorized users to add and manage tables.
+
+Support multiple floors and sections.
+
+==================================================
+9. SEPARATE KITCHEN PORTAL
+==================================================
+
+Create a completely separate Kitchen Portal.
+
+Route: /kitchen
+
+Kitchen sidebar:
+
+1. Kitchen Dashboard.
+2. Live Orders.
+3. Preparation Stations.
+4. Kitchen Inventory.
+5. Low Stock Alerts.
+6. Voice Announcements.
+7. Completed Orders.
+
+Show new orders as live tickets.
+
+Each ticket shows:
+
+- Order number.
+- Table number.
+- Items.
+- Quantities.
+- Customizations.
+- Allergies.
+- Special instructions.
+- Order time.
+- Preparation timer.
+- Kitchen station.
+
+Kitchen stations:
+
+- Indian Kitchen.
+- Chinese Kitchen.
+- Pizza Station.
+- Grill.
+- Beverages.
+- Desserts.
+
+Automatically assign items to the correct preparation station.
+
+Kitchen staff can:
+
+- Accept orders.
+- Start cooking.
+- Update preparation status.
+- Pause preparation.
+- Mark items ready.
+- Mark orders ready.
+
+All changes must update the waiter portal in real time.
+
+==================================================
+10. HINDI KITCHEN VOICE ANNOUNCEMENT SYSTEM
+==================================================
+
+Implement an actual voice announcement system.
+
+Do not create a decorative voice button.
+
+For the free demo use the browser Web Speech API SpeechSynthesis.
+
+Do not depend on an external Gemini audio-generation model for ordinary kitchen announcements.
+
+Use Hindi locale hi-IN.
+
+Implement:
+
+- Voice detection.
+- Hindi voice selection.
+- Voice availability indicator.
+- Voice enable button.
+- Speaker test.
+- Volume control.
+- Mute.
+- Unmute.
+- Replay.
+- Announcement queue.
+- Announcement history.
+- Duplicate announcement protection.
+
+IMPORTANT:
+
+The browser may load available voices asynchronously.
+
+Call speechSynthesis.getVoices().
+
+Listen for the voiceschanged event and refresh available voice options when it fires.
+
+Choose a suitable Hindi voice when available.
+
+Create a button:
+
+ENABLE KITCHEN VOICE
+
+Kitchen staff must click it once to initialize audio.
+
+After initialization, new incoming kitchen orders should be announced automatically while the kitchen page is active.
+
+Sample announcements:
+
+"टेबल नंबर पाँच का नया ऑर्डर आया है।"
+
+"टेबल नंबर तीन के लिए दो पनीर बटर मसाला और तीन बटर नान तैयार करें।"
+
+"ऑर्डर नंबर १०२ तैयार है।"
+
+"टेबल नंबर सात का ऑर्डर तुरंत तैयार करें।"
+
+Speak:
+
+- Table number.
+- Order number.
+- Item names.
+- Quantities.
+- Important allergy notes.
+- Urgent order alerts.
+- Ready notifications.
+
+Prevent two announcements from speaking over each other.
+
+Keep a queue of incoming announcements.
+
+If no Hindi voice is installed or available, display a clear error and provide an English fallback.
+
+Never pretend audio was played when it failed.
+
+Include a speaker test and voice test on the actual kitchen device.
+
+==================================================
+11. COMPLETE INVENTORY MANAGEMENT SYSTEM
+==================================================
+
+This is one of the most important modules.
+
+Build a fully functional inventory system connected directly to kitchen orders, menu recipes and sales.
+
+Create inventory pages in:
+
+- Owner portal.
+- Inventory manager access.
+- Kitchen portal.
+
+Owner and inventory manager have full stock management access.
+
+Kitchen staff only have ingredient visibility, consumption information, low-stock alerts and replenishment requests.
+
+--------------------------------------------------
+INVENTORY DASHBOARD
+--------------------------------------------------
+
+Show:
+
+- Total inventory items.
+- Total stock value.
+- Available stock.
+- Low-stock items.
+- Out-of-stock items.
+- Expiring items.
+- Daily consumption.
+- Recent stock movements.
+- Pending purchase orders.
+
+--------------------------------------------------
+GLOBAL INVENTORY SEARCH
+--------------------------------------------------
+
+Create one powerful inventory search bar.
+
+It must search:
+
+- Item name.
+- Ingredient name.
+- SKU.
+- Barcode.
+- Brand.
+- Category.
+- Supplier.
+
+Add filters:
+
+- Category.
+- Stock status.
+- Unit.
+- Supplier.
+- Low stock.
+- Expiring.
+
+--------------------------------------------------
+ADD INVENTORY ITEM
+--------------------------------------------------
+
+Create an Add Item button and Add Custom Item button.
+
+Fields:
+
+- Item name.
+- SKU.
+- Barcode.
+- Category.
+- Brand.
+- Description.
+- Unit.
+- Current stock.
+- Minimum stock.
+- Reorder quantity.
+- Purchase cost.
+- Supplier.
+- Storage location.
+- Expiry date.
+- Item image.
+
+Units:
+
+- Kilograms.
+- Grams.
+- Litres.
+- Millilitres.
+- Pieces.
+- Packets.
+- Boxes.
+- Bottles.
+
+Save items to Firestore.
+
+Allow authorized staff to edit, archive and manage inventory items.
+
+--------------------------------------------------
+12. RECIPE MANAGEMENT AND AUTOMATIC INVENTORY DEDUCTION
+--------------------------------------------------
+
+Create a complete recipe management module.
+
+Every menu dish must be connected to its ingredient requirements.
+
+Example:
+
+MENU PRODUCT: PANEER BUTTER MASALA
+
+Ingredients per serving:
+
+Paneer: 200g.
+Tomatoes: 150g.
+Butter: 30g.
+Cream: 40ml.
+Spices: 10g.
+
+Starting inventory:
+
+Paneer: 10kg.
+Tomatoes: 15kg.
+Butter: 5kg.
+Cream: 8L.
+Spices: 2kg.
+
+When an order is confirmed and sent to the kitchen, deduct the exact ingredient quantities.
+
+For one serving deduct:
+- 200g paneer.
+- 150g tomatoes.
+- 30g butter.
+- 40ml cream.
+- 10g spices.
+
+For two servings, deduct twice the quantity.
+
+Calculate ingredient usage for every order, including variants and configured add-ons.
+
+--------------------------------------------------
+CRITICAL INVENTORY RULES
+--------------------------------------------------
+
+1. Never deduct inventory when an item is only added to the cart.
+2. Deduct inventory once when the order is confirmed and accepted by the kitchen.
+3. Never deduct the same order twice.
+4. Use a unique inventory transaction reference for each order.
+5. Use server-side Firestore transactions.
+6. Check stock availability before confirmation.
+7. Prevent negative stock unless an authorized manager explicitly overrides it.
+8. Record every stock movement.
+9. Record the related order ID.
+10. Handle cancellations and stock reversals properly.
+11. Never automatically restore ingredients after cooking has started.
+12. Record wastage separately.
+
+Implement idempotency using order ID and inventory deduction ID.
+
+Firestore transactions must perform the stock reads before writes.
+
+Transactions must be safe against concurrent order updates.
+
+If a stock deduction fails, do not mark that inventory operation successful.
+
+Show errors to staff.
+
+--------------------------------------------------
+13. AUTOMATIC LOW STOCK ALERTS
+--------------------------------------------------
+
+Example:
+
+Paneer available: 1.5kg.
+Minimum quantity: 2kg.
+
+Generate:
+
+LOW STOCK ALERT — PANEER.
+
+Create alerts for:
+
+- Stock below minimum.
+- Out of stock.
+- Near expiry.
+- Expired items.
+- High consumption.
+- Replenishment needed.
+
+Show alerts in:
+
+- Owner dashboard.
+- Inventory dashboard.
+- Kitchen inventory tab.
+
+Allow authorized users to acknowledge and resolve alerts.
+
+Avoid duplicate alerts on repeated updates.
+
+Create a Request Replenishment feature for kitchen staff.
+
+Create purchase order functionality for inventory managers.
+
+==================================================
+14. BILLING AND PAYMENTS
+==================================================
+
+Create a professional bill management interface.
+
+Support:
+
+- Cash.
+- UPI.
+- Bank transfer.
+- Debit card.
+- Credit card.
+- Apple Pay.
+- Google Pay.
+
+IMPORTANT:
+This is a demo environment.
+
+Do not collect actual payment credentials or charge real money.
+
+Create DEMO payment workflows for all payment options.
+
+Each option must clearly indicate:
+
+DEMO PAYMENT — NO REAL MONEY WILL BE CHARGED.
+
+Simulate:
+- Payment success.
+- Payment failure.
+- Transaction IDs.
+- Payment history.
+
+Allow:
+
+- Full bill payment.
+- Split equally.
+- Split by items.
+- Split by quantity.
+- Custom amount split.
+- Tips.
+- Multiple payment methods.
+
+Calculate:
+
+Subtotal.
+Discount.
+Applicable taxes.
+Service charge.
+Tip.
+Grand total.
+Paid amount.
+Remaining balance.
+
+Allow waiters to record cash payments.
+
+Use server-side payment simulation and update bill records consistently.
+
+Never claim a real payment has been received.
+
+Create professional receipts with restaurant name and order details.
+
+Allow receipt printing and email configuration.
+
+==================================================
+15. CUSTOMER LOYALTY AND EXPERIENCE
+==================================================
+
+Add:
+
+- Customer profiles.
+- Customer order history.
+- Loyalty points.
+- Rewards.
+- Coupons.
+- Special offers.
+- Wi-Fi information.
+- Customer feedback.
+- Reviews.
+- Digital receipts.
+
+Add optional table games:
+
+- Tic-tac-toe.
+- Quiz.
+- Word games.
+
+Keep games optional and separate from ordering and payments.
+
+==================================================
+16. STAFF MANAGEMENT
+==================================================
+
+Create:
+
+- Employee profiles.
+- Staff roles.
+- Permissions.
+- Waiter assignment.
+- Shift management.
+- Attendance.
+- Activity logs.
+
+Protect owner-only information.
+
+==================================================
+17. REPORTS AND ANALYTICS
+==================================================
+
+Create:
+
+- Sales reports.
+- Daily orders.
+- Monthly orders.
+- Best-selling dishes.
+- Payment reports.
+- Waiter performance.
+- Kitchen preparation times.
+- Ingredient consumption.
+- Inventory purchase reports.
+- Wastage reports.
+- Estimated profit and loss.
+
+Add CSV export.
+
+Only calculate profit where cost data exists, and clearly label incomplete estimates.
+
+==================================================
+18. DATABASE DESIGN
+==================================================
+
+Use Firestore.
+
+Organize collections for:
+
+- restaurants
+- users
+- restaurantMembers
+- roles
+- floors
+- tables
+- tableSessions
+- menuCategories
+- menuProducts
+- productVariants
+- addons
+- recipes
+- recipeIngredients
+- inventoryItems
+- inventoryTransactions
+- stockAlerts
+- suppliers
+- purchaseOrders
+- orders
+- orderItems
+- kitchenStations
+- kitchenTickets
+- serviceRequests
+- bills
+- payments
+- refunds
+- customers
+- loyaltyTransactions
+- reviews
+- shifts
+- attendance
+- notifications
+- auditLogs
+
+All restaurant data must contain a restaurantId.
+
+Use secure server-side authorization.
+
+Ensure users from one restaurant cannot read another restaurant's data.
+
+Use Firestore security rules.
+
+Use server-side validation for critical operations.
+
+Never expose Firebase Admin credentials or payment secrets in frontend code.
+
+==================================================
+19. PROFESSIONAL UI DESIGN
+==================================================
+
+Create a premium professional SaaS design.
+
+Follow these seven strict design requirements:
+
+1. No decorative gradients or glows. Use neutral backgrounds (#f4f5f8 or white) and one dark accent colour only.
+2. Use Lucide line icons consistently with 1.75px stroke and 16–20px sizing. No emojis as UI icons.
+3. Remove non-actionable badges such as NEW, HOT, AI, PRO and Beta. Keep useful status indicators.
+4. No cards inside cards. One surface per section, separate items using spacing or 1px dividers.
+5. Group related things: label and value 2–4px apart, items in a group 8–12px apart, sections 24px or more apart.
+6. Nested corners: inner radius = outer radius − padding.
+7. No looping animations. Animate only user interactions and state changes, 150–250ms ease-out.
+
+Use:
+- Clean typography.
+- Dark navy accent.
+- White surfaces.
+- Light neutral background.
+- Clear tables.
+- Professional data visualizations.
+- Simple navigation.
+- Accessible colours.
+- Mobile-first customer interface.
+
+Do not overload the sidebar.
+
+Each portal should have only its relevant navigation.
+
+==================================================
+20. DEMO DATA AND PUBLIC DEMONSTRATION
+==================================================
+
+Create a working demo restaurant.
+
+Create:
+
+- 20 tables.
+- 50 menu items.
+- 8 menu categories.
+- 6 kitchen stations.
+- 5 waiters.
+- 3 kitchen employees.
+- 30 inventory ingredients.
+- 15 example recipes.
+- 10 example customers.
+- Suppliers.
+- Sample orders.
+- Sample transactions.
+
+Populate enough data to demonstrate every module.
+
+Create demo staff login accounts through a proper authentication setup.
+
+Display the demo login instructions on a dedicated demo access page.
+
+Do not expose actual administrator credentials in public customer pages.
+
+Provide one-click demo reset functionality for authorized administrators.
+
+Reset must restore the initial demo state without destroying the application configuration.
+
+Keep all demo transactions labelled as demo.
+
+==================================================
+21. QR AND NFC SUPPORT
+==================================================
+
+Create a QR management screen.
+
+Generate a unique customer QR URL for each table.
+
+Create downloadable QR codes.
+
+Use the currently deployed base URL rather than hardcoded localhost addresses.
+
+Example:
+
+/customer/dineflow-demo/table/1
+
+/customer/dineflow-demo/table/2
+
+/customer/dineflow-demo/table/3
+
+Every URL must open the correct table's customer menu.
+
+The same deployed HTTPS URL can be written to an NFC tag.
+
+Include a QR preview and download option.
+
+==================================================
+22. REAL-TIME COMMUNICATION
+==================================================
+
+Use Firestore real-time listeners for live updates.
+
+Examples:
+
+Customer places order:
+→ Waiter portal gets the new order.
+→ Kitchen portal receives the ticket.
+→ Kitchen voice announces the order.
+→ Inventory updates after successful confirmation.
+→ Owner dashboard updates.
+
+Kitchen marks order ready:
+→ Waiter portal receives the update.
+→ Table status updates.
+
+Customer calls waiter:
+→ Waiter sees the request immediately.
+→ Correct table is highlighted.
+
+Customer requests bill:
+→ Waiter receives a separate bill request.
+
+Payment completes:
+→ Bill updates.
+→ Table status updates according to the remaining orders and guests.
+→ Receipt becomes available.
+
+No manual refresh should be required.
+
+==================================================
+23. TESTING AND QUALITY CONTROL
+==================================================
+
+You must actually test the application.
+
+Do not only generate code and claim success.
+
+Run the app and verify TypeScript compilation, server startup, browser runtime and all navigation routes.
+
+Create and run tests for these workflows:
+
+TEST 1:
+Open customer QR Table 5.
+Browse menu.
+Place a Paneer Butter Masala order.
+Confirm order appears in waiter and kitchen portals.
+
+TEST 2:
+Check recipe.
+Verify inventory deductions equal the configured recipe.
+
+TEST 3:
+Submit the same order event again.
+Verify no second inventory deduction occurs.
+
+TEST 4:
+Reduce Paneer stock below minimum.
+Verify low-stock alerts appear in owner and kitchen portals.
+
+TEST 5:
+Enable kitchen voice.
+Place a new order.
+Verify actual Hindi speech is played.
+
+TEST 6:
+Open customer website.
+Click Call Waiter without entering payment.
+Verify the waiter receives the request.
+
+TEST 7:
+Click Request Bill.
+Verify a separate bill request is created.
+
+TEST 8:
+Log in as kitchen staff.
+Verify the kitchen inventory tab is accessible.
+Verify owner financial settings are not accessible.
+
+TEST 9:
+Log in as waiter.
+Verify waiter cannot access restricted inventory management functions.
+
+TEST 10:
+Use three separate browser sessions.
+Verify the customer, waiter and kitchen interfaces synchronize.
+
+TEST 11:
+Complete a simulated split payment.
+Verify the paid amount and remaining balance.
+
+TEST 12:
+Refresh the application.
+Verify data remains stored in Firestore.
+
+Fix all errors discovered during testing.
+
+Do not hide errors with fake notifications or dummy successful responses.
+
+==================================================
+24. DEPLOYMENT REQUIREMENTS
+==================================================
+
+Prepare the project for Google AI Studio deployment through Cloud Run.
+
+Requirements:
+
+- Public HTTPS website.
+- Working routes after page refresh.
+- Persistent Firestore data.
+- Secure backend.
+- No hardcoded secrets.
+- No localhost links.
+- No missing dependencies.
+- Responsive mobile interface.
+- Fast demo loading.
+- Working QR links.
+- Working NFC-compatible URLs.
+
+Keep the payment system in demo mode.
+
+Do not require paid third-party integrations for ordinary demo workflows.
+
+Prepare complete deployment instructions.
+
+==================================================
+25. EXECUTION INSTRUCTIONS — VERY IMPORTANT
+==================================================
+
+Build the application in this sequence:
+
+PHASE 1:
+Set up React, Node.js, Firebase, authentication, database and navigation.
+
+PHASE 2:
+Build customer QR menu, table sessions and ordering.
+
+PHASE 3:
+Build separate owner, waiter and kitchen portals.
+
+PHASE 4:
+Build POS, floor map, orders and service requests.
+
+PHASE 5:
+Build inventory, recipe management and automatic stock deduction.
+
+PHASE 6:
+Build low-stock alerts, kitchen inventory and Hindi speech.
+
+PHASE 7:
+Build billing, split payments and demo transactions.
+
+PHASE 8:
+Build reports, staff management and settings.
+
+PHASE 9:
+Populate demo data and implement demo reset.
+
+PHASE 10:
+Run end-to-end testing, fix errors and prepare deployment.
+
+Do not stop after creating the first dashboard.
+
+Continue implementing all phases.
+
+If a feature requires Firebase setup, request the integration and implement the feature after it is enabled.
+
+If a third-party paid service would be required, create a working demo alternative rather than blocking the application.
+
+Do not invent successful integration results.
+
+If a test fails, diagnose and fix the actual source code.
+
+FINAL OBJECTIVE:
+
+I want one complete, professional, interconnected DineFlow Restaurant Management System.
+
+A customer should scan a QR code and order.
+
+The waiter should receive the order.
+
+The kitchen should receive the order and announce it in Hindi.
+
+Inventory should automatically deduct the correct ingredients.
+
+Low-stock alerts should be generated.
+
+The customer should be able to call a waiter at any time.
+
+The waiter should manage bills and demo payments.
+
+The owner should see everything on one dashboard.
+
+All portals must be separate, but all data must be connected.
+
+Build a genuinely functional application that I can demonstrate to restaurant owners using my phone, QR codes and NFC cards.
